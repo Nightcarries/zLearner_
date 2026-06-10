@@ -785,8 +785,8 @@ export default function DashboardPage() {
                           : "bg-primary-blue text-white mr-auto rounded-tl-none"
                       }`}
                     >
-                      <div className="font-roboto text-[13.5px] leading-relaxed select-text">
-                        <Markdown text={message.text} isAi={message.sender !== 'user'} fontClass="font-roboto" />
+                      <div className="font-roboto text-[13px] leading-relaxed select-text">
+                        <Markdown text={message.text} isAi={message.sender !== 'user'} fontClass="font-roboto" textSize="text-[13px]" />
                       </div>
                       <span 
                         className={`text-[10px] text-right mt-1 opacity-70 font-departure ${
@@ -827,7 +827,7 @@ export default function DashboardPage() {
                       }}
                       placeholder="Ask the agent to edit or update the content of this topic..."
                       rows={2}
-                      className="w-full bg-transparent outline-none resize-none font-roboto text-[13.5px] text-text-grey placeholder-slate-400 border-none p-0 scrollbar-none"
+                      className="w-full bg-transparent outline-none resize-none font-roboto text-[13px] text-text-grey placeholder-slate-400 border-none p-0 scrollbar-none"
                     />
                   </div>
                   <button 
@@ -899,7 +899,7 @@ export default function DashboardPage() {
                           : "Enter a topic/subject name (e.g. Intro to Machine Learning) to generate a new course..."
                       }
                       rows={2}
-                      className="w-full bg-transparent outline-none resize-none font-roboto text-[14.5px] text-text-grey placeholder-slate-500 border-none p-0 scrollbar-none"
+                      className="w-full bg-transparent outline-none resize-none font-roboto text-[13px] text-text-grey placeholder-slate-500 border-none p-0 scrollbar-none"
                     />
                   </div>
                   <button 

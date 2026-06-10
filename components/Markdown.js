@@ -3,7 +3,7 @@
 import React from 'react';
 import katex from 'katex';
 
-export default function Markdown({ text, isAi = false, fontClass = "font-lora" }) {
+export default function Markdown({ text, isAi = false, fontClass = "font-lora", textSize = "text-[16px]" }) {
   if (!text) return null;
 
   const lines = text.split('\n');
@@ -12,6 +12,7 @@ export default function Markdown({ text, isAi = false, fontClass = "font-lora" }
   let currentList = [];
   let inCodeBlock = false;
   let codeBlockLines = [];
+  let inCodeBlockLang = '';
   let inMathBlock = false;
   let mathBlockLines = [];
 
@@ -20,7 +21,7 @@ export default function Markdown({ text, isAi = false, fontClass = "font-lora" }
       elements.push(
         <p
           key={`p-${key}`}
-          className={`${fontClass} text-[16px] leading-relaxed text-justify mb-4 whitespace-pre-line ${
+          className={`${fontClass} ${textSize} leading-relaxed text-justify mb-4 whitespace-pre-line ${
             isAi ? 'text-white' : 'text-text-grey'
           }`}
         >
@@ -36,7 +37,7 @@ export default function Markdown({ text, isAi = false, fontClass = "font-lora" }
       elements.push(
         <ul
           key={`ul-${key}`}
-          className={`list-disc pl-6 mb-4 space-y-2 ${fontClass} text-[16px] ${
+          className={`list-disc pl-6 mb-4 space-y-2 ${fontClass} ${textSize} ${
             isAi ? 'text-white' : 'text-text-grey'
           }`}
         >

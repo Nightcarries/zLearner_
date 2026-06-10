@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import dbConnect from '../../../lib/db.js';
 import Learning from '../../../models/Learning.js';
 import Topic from '../../../models/Topic.js';
+import { embedText } from '../../../lib/embeddings.js';
 
 // Mongoose + HuggingFace transformers require Node runtime
 export const runtime = 'nodejs';
@@ -19,22 +20,6 @@ const NODE_LABELS = {
   quizConstructor: '🧠 Generating review flashcards',
   incrementModule: '🔄 Advancing to next module',
 };
-
-// Embedding helper for single topic generation
-let _embedder = null;
-async function getEmbedder() {
-  if (!_embedder) {
-    const { pipeline } = await import('@huggingface/transformers');
-    _embedder = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
-  }
-  return _embedder;
-}
-
-async function embedText(text) {
-  const embedder = await getEmbedder();
-  const output = await embedder(text, { pooling: 'mean', normalize: true });
-  return Array.from(output.data);
-}
 
 // Flashcard schema for assessment generator
 const quizSchema = z.object({
