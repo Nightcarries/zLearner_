@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = "mongodb+srv://carrysheriff_db_user:2ofToMFogyF0FaDE@zlearner.aa3ptuy.mongodb.net/zLearner";
+const MONGODB_URI = "";
 
 async function test() {
   console.log("Connecting...");
