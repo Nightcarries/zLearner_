@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+@font-face {
+  font-family: 'Departure Mono';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2409-1@1.0/DepartureMono-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-departure: 'Departure Mono', monospace;
+  --font-lora: 'Lora', serif;
+  --font-roboto: 'Roboto', sans-serif;
+  --color-primary-blue: #3d59c6;
+  --color-primary-grey: #d9d9d9;
+  --color-text-grey: #272727;
+  --color-text-blue: #3d59c6;
+}
