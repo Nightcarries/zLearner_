@@ -328,39 +328,38 @@ export default function ReaderPage() {
         }`}
       >
         {/* Sidebar Header */}
-        <div className="h-[46px] flex items-center justify-between px-[10px] relative">
+        <div className={`h-[46px] flex items-center px-[10px] ${isSidebarOpen ? "justify-between" : "justify-center"}`}>
           {isSidebarOpen ? (
             <>
               <button 
                 onClick={() => setIsSidebarOpen(false)}
-                className="size-[46px] flex items-center justify-center cursor-pointer hover:bg-slate-50 rounded-full transition-colors text-primary-blue"
+                className="size-[32px] flex items-center justify-center cursor-pointer hover:bg-slate-50 rounded-full transition-colors text-primary-blue"
                 title="Collapse Sidebar"
               >
-                <CloseIcon className="size-[24px]" />
+                <CloseIcon className="size-[18px]" />
               </button>
+              
+              <span className="font-departure text-[20px] font-bold text-primary-blue leading-none tracking-tight select-none">
+                zlearner_
+              </span>
               
               <Link 
                 href="/dashboard"
-                className="size-[46px] flex items-center justify-center cursor-pointer hover:bg-slate-50 rounded-full transition-colors text-primary-blue"
+                className="size-[32px] flex items-center justify-center cursor-pointer hover:bg-slate-50 rounded-full transition-colors text-primary-blue"
                 title="Back to Dashboard"
               >
-                <HomeIcon className="size-[32px]" />
+                <HomeIcon className="size-[20px]" />
               </Link>
             </>
           ) : (
             <button 
               onClick={() => setIsSidebarOpen(true)}
-              className="size-[46px] flex items-center justify-center cursor-pointer hover:bg-slate-50 rounded-full transition-colors absolute left-[10px] top-0 text-primary-blue"
+              className="size-[32px] flex items-center justify-center cursor-pointer hover:bg-slate-50 rounded-full transition-colors text-primary-blue"
               title="Expand Sidebar"
             >
-              <HamburgerIcon className="size-[24px]" />
+              <HamburgerIcon className="size-[18px]" />
             </button>
           )}
-        </div>
-
-        {/* Header Divider Line */}
-        <div className="w-full px-[6px]">
-          <LineDividerVertical className="w-full h-[9px] text-slate-200/50" />
         </div>
 
         {/* Sidebar Middle Content: Learnings & Topics List */}
