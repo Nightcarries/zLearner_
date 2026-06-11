@@ -120,8 +120,7 @@ export default function DashboardPage() {
   }, [activeTopicId, chatHistoryMap, isAiTyping]);
 
   const handleSignOut = () => {
-    const callbackUrl = `${window.location.origin}/login`;
-    signOut({ callbackUrl });
+    signOut({ callbackUrl: "/login" });
   };
 
   // Expand / Collapse a Learning module in the left sidebar

@@ -14,6 +14,28 @@ export const authConfig = {
       }
       return true;
     },
+    async redirect({ url, baseUrl }) {
+      let currentBaseUrl = baseUrl;
+      if (process.env.VERCEL_URL) {
+        currentBaseUrl = `https://${process.env.VERCEL_URL}`;
+      }
+
+      if (url.startsWith("/")) {
+        return `${currentBaseUrl}${url}`;
+      }
+
+      try {
+        const parsedUrl = new URL(url);
+        const parsedBase = new URL(currentBaseUrl);
+        if (parsedUrl.origin === parsedBase.origin) {
+          return url;
+        }
+      } catch (e) {
+        // Fallback
+      }
+
+      return currentBaseUrl;
+    },
   },
   providers: [], // Required empty array for base config
 };

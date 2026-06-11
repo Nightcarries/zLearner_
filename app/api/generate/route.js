@@ -8,6 +8,7 @@ import dbConnect from '../../../lib/db.js';
 import Learning from '../../../models/Learning.js';
 import Topic from '../../../models/Topic.js';
 import { embedText } from '../../../lib/embeddings.js';
+import { invokeStructured } from '../../../lib/groqHelper.js';
 
 // Mongoose + HuggingFace transformers require Node runtime
 export const runtime = 'nodejs';
@@ -216,7 +217,7 @@ ${contextBlock}`;
           });
           const structuredGroq = groqSyllabus.withStructuredOutput(quizSchema);
 
-          const quizResult = await structuredGroq.invoke([
+          const quizResult = await invokeStructured(structuredGroq, [
             {
               role: 'system',
               content: `You are an expert assessment designer. Generate exactly 5 flashcard-style review questions 

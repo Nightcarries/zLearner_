@@ -6,6 +6,7 @@ import dbConnect from '../../../lib/db.js';
 import Topic from '../../../models/Topic.js';
 import { KnowledgeBase } from '../../../models/index.js';
 import { embedText } from '../../../lib/embeddings.js';
+import { invokeStructured } from '../../../lib/groqHelper.js';
 
 export const runtime = 'nodejs';
 
@@ -116,7 +117,7 @@ ${finalContext}
 ---`;
 
     console.log(`🤖 Generating quiz for topic "${topic.title}" (${topicId}) using RAG context...`);
-    const result = await structuredModel.invoke([
+    const result = await invokeStructured(structuredModel, [
       { role: 'system', content: systemPrompt },
       { role: 'user', content: userPrompt }
     ]);
