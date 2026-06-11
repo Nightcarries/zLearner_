@@ -18,7 +18,7 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    
+
     if (!username.trim() || !password.trim()) {
       setError("Please fill in all fields.");
       return;
@@ -27,11 +27,12 @@ function LoginForm() {
     setLoading(true);
 
     try {
+      const absoluteCallbackUrl = `${window.location.origin}${callbackUrl}`;
       const res = await signIn("credentials", {
         username: username.trim(),
         password: password.trim(),
         redirect: false,
-        callbackUrl,
+        callbackUrl: absoluteCallbackUrl,
       });
 
       if (res?.error) {
@@ -53,7 +54,7 @@ function LoginForm() {
   };
 
   return (
-    <form 
+    <form
       onSubmit={handleSubmit}
       className="relative border-4 border-[#3d59c6] border-dashed h-[420px] w-full max-w-[480px] rounded-[20px] bg-white/95 p-6 flex flex-col justify-between shadow-lg"
     >
@@ -66,13 +67,12 @@ function LoginForm() {
 
       {/* Input Fields */}
       <div className="space-y-4 flex-1 flex flex-col justify-center">
-        
         {/* Username */}
         <div className="space-y-1">
           <label className="block font-departure text-[16px] md:text-[18px] text-[#3d59c6] select-none">
             Username_
           </label>
-          <input 
+          <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -88,7 +88,7 @@ function LoginForm() {
           <label className="block font-departure text-[16px] md:text-[18px] text-[#3d59c6] select-none">
             Password_
           </label>
-          <input 
+          <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -108,7 +108,7 @@ function LoginForm() {
 
       {/* Action Button */}
       <div className="pt-2">
-        <button 
+        <button
           type="submit"
           disabled={loading}
           className="w-full h-[46px] bg-[#3d59c6] hover:bg-[#2b419c] rounded-[12px] flex items-center justify-center space-x-2 font-departure text-[18px] md:text-[22px] text-white transition-all cursor-pointer active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed select-none relative shadow"
@@ -127,7 +127,10 @@ function LoginForm() {
       {/* Register Link */}
       <p className="text-center font-departure text-[12px] text-[#3d59c6]/70 select-none">
         Don't have an account?{" "}
-        <Link href="/register" className="text-[#3d59c6] underline hover:text-[#2b419c] transition-colors">
+        <Link
+          href="/register"
+          className="text-[#3d59c6] underline hover:text-[#2b419c] transition-colors"
+        >
           Register
         </Link>
       </p>
@@ -138,19 +141,17 @@ function LoginForm() {
 export default function LoginSignupPage() {
   return (
     <div className="w-screen h-screen overflow-hidden flex flex-col items-center justify-center relative bg-white px-4">
-      
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 size-full z-0 pointer-events-none select-none overflow-hidden flex items-center justify-center">
-        <img 
-          alt="" 
-          className="w-full h-full object-cover opacity-80" 
-          src="/assets/d6c8b4888ff7865e6224d0a9c57587972911c1ee.svg" 
+        <img
+          alt=""
+          className="w-full h-full object-cover opacity-80"
+          src="/assets/d6c8b4888ff7865e6224d0a9c57587972911c1ee.svg"
         />
       </div>
 
       {/* Main Content Card Container */}
       <div className="z-10 w-full max-w-[656px] flex flex-col items-center space-y-6 md:space-y-8">
-        
         {/* Header Texts */}
         <div className="text-center space-y-2 select-none w-full">
           <h1 className="font-departure text-[56px] md:text-[72px] text-[#3d59c6] leading-none tracking-tight">
@@ -162,14 +163,17 @@ export default function LoginSignupPage() {
         </div>
 
         {/* Login Form wrapped in Suspense for useSearchParams */}
-        <Suspense fallback={
-          <div className="relative border-4 border-[#3d59c6] border-dashed h-[420px] w-full max-w-[480px] rounded-[20px] bg-white/95 flex items-center justify-center shadow-lg">
-            <div className="font-departure text-lg text-[#3d59c6] animate-pulse">Loading auth config...</div>
-          </div>
-        }>
+        <Suspense
+          fallback={
+            <div className="relative border-4 border-[#3d59c6] border-dashed h-[420px] w-full max-w-[480px] rounded-[20px] bg-white/95 flex items-center justify-center shadow-lg">
+              <div className="font-departure text-lg text-[#3d59c6] animate-pulse">
+                Loading auth config...
+              </div>
+            </div>
+          }
+        >
           <LoginForm />
         </Suspense>
-
       </div>
     </div>
   );
